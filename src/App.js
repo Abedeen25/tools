@@ -1,25 +1,27 @@
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Dashborad from "./pages/dashboard";
 import AdCalender from "./pages/AdmissionCalender/AdCalender";
-import "./App.css";
+import Sidebar from "./components/Sidebar";
+import "./index.scss";
 
 function App() {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Dashborad</Link>
-          </li>
-          <li>
-            <Link to="/admission-calender">AdCalender</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Dashborad />} />
-        <Route path="/admission-calender" element={<AdCalender />} />
-      </Routes>
+      <div className="app-container">
+        <Sidebar />
+        <div className="content">
+          <Routes>
+            <Route path="" element={<Navigate to="/dashboard" />} />
+            <Route path="/dashboard" element={<Dashborad />} />
+            <Route path="/admission-calender" element={<AdCalender />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
