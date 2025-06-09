@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Dashborad from "./pages/dashboard";
-import AdCalender from "./pages/AdmissionCalender/AdCalender";
+import AdCalender from "./pages/Admission/AdCalender";
 import Sidebar from "./components/Sidebar";
 import "./index.scss";
 
@@ -16,7 +16,7 @@ function App() {
         <Sidebar />
         <div className="content">
           <Routes>
-            <Route path="" element={<Navigate to="/tools/dashboard" />} />
+            <Route path="/" element={<Navigate to="/tools/dashboard" />} />
             <Route path="/tools/dashboard" element={<Dashborad />} />
             <Route path="/tools/admission-calender" element={<AdCalender />} />
           </Routes>
