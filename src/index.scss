@@ -89,6 +89,9 @@ body {
   position: sticky;
   top: 0;
   align-self: start;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 #sidebar ul {
@@ -101,7 +104,8 @@ body {
   fill: var(--text-brighter-text);
 }
 
-#sidebar a span {
+#sidebar a span,
+#sidebar .dropdown-btn {
   flex-grow: 1;
 }
 
@@ -110,18 +114,45 @@ body {
   border: 1px;
 }
 
+#sidebar a .dropdown {
+  :hover {
+    background-color: var(--accent-color-60);
+    border-radius: 0.5em;
+  }
+}
+
 #sidebar > ul > li:first-child {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 2em;
   .main-logo {
+    display: flex;
+    align-items: center;
+    transition: 300ms ease-in-out;
+
     .Hero-icon {
       width: 4em;
       height: 4em;
-      flex: auto;
+      margin-right: auto;
+      margin-left: 1em;
+      transition: 150ms ease-in-out;
       path {
         fill: var(--text-bright-text);
       }
+    }
+  }
+  #toggle-btn {
+    border: none;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    background: none;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--accent-color-40);
+      path {
+        fill: var(--text-highlight-text);
+      }
+    }
+    svg {
+      transition: rotate 150ms ease;
     }
   }
 }
@@ -135,12 +166,53 @@ body {
 #sidebar a,
 #sidebar .logo {
   border-radius: 0.5em;
-  padding: 0.85em;
+  padding: 0.8em;
   text-decoration: none;
   color: var(--text-brighter-text);
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 1.1em;
+}
+
+#sidebar .sub-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 300ms ease-in-out;
+  padding-left: 2.4em;
+  > div {
+    overflow: hidden;
+  }
+}
+
+#sidebar .drop-icon {
+  transition: 300ms ease-in-out;
+}
+#sidebar .drop-icon.rotated {
+  opacity: 0;
+}
+
+#sidebar .sub-menu.show {
+  grid-template-rows: 1fr;
+}
+
+#sidebar.close {
+  padding: 5px;
+  width: 60px;
+
+  .main-logo {
+    flex-direction: column;
+  }
+  .Hero-icon {
+    height: 2em !important;
+    width: 2em !important;
+    margin-left: 0.7em !important;
+  }
+  #toggle-btn {
+    margin-top: 1em;
+    svg {
+      rotate: 180deg;
+    }
+  }
 }
 
 .dashboard {
