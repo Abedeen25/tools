@@ -85,13 +85,31 @@ body {
   border-right: 1px solid var(--accent-color-20);
   backdrop-filter: blur(3px);
   border-radius: 0.5em;
-
   position: sticky;
   top: 0;
   align-self: start;
   transition: 300ms ease-in-out;
-  overflow: hidden;
+  overflow-x: hidden;
   text-wrap: nowrap;
+
+  #theme-toggle {
+    position: fixed;
+    bottom: 2em;
+
+    .action {
+      background-color: var(--bg-glass);
+      cursor: pointer;
+      border-radius: 1em;
+      padding: 0.6em;
+      padding-bottom: 0.5em;
+      svg {
+        fill: var(--fun-color1);
+      }
+      &:hover {
+        background-color: var(--accent-color-40);
+      }
+    }
+  }
 }
 
 #sidebar ul {

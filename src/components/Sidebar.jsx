@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.scss";
+import ThemeToggle from "../components/ThemeToggle";
 
 function Sidebar() {
   const [calenderVisible, setCalenderVisible] = useState(false);
@@ -124,6 +125,7 @@ function Sidebar() {
           </Link>
         </li>
       </ul>
+      <ThemeToggle />
     </nav>
   );
 }
