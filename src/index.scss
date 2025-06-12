@@ -74,6 +74,7 @@ body {
   padding: 1em;
   flex: 1;
   backdrop-filter: blur(5px);
+  overflow: auto;
 }
 
 #sidebar {
@@ -233,8 +234,37 @@ body {
   }
 }
 
-.dashboard {
-  height: 200vh;
+.calender-content {
+  overflow-x: scroll;
+  .timeline-container {
+    background-color: var(--bg-main);
+    margin-top: 1em;
+    border-radius: 0.5em;
+    box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.07);
+    overflow: auto;
+
+    .timeline-days {
+      display: flex;
+      align-items: stretch;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      min-height: 7em;
+      padding-top: 1.5em;
+      .day-mark {
+        min-width: 2em;
+        text-align: right;
+        border-right: 1px solid var(--text-brighter-text);
+        color: var(--text-brighter-text);
+        overflow-x: visible;
+      }
+      .month-name {
+        color: var(--fun-color1);
+        background-color: var(--bg-glass);
+        font-weight: 600;
+        margin-top: -1.4em;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {

@@ -16,8 +16,8 @@ function App() {
         <Sidebar />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Navigate to="/tools/dashboard" />} />
-            <Route path="/tools/dashboard" element={<Dashborad />} />
+            <Route path="/" element={<Dashborad />} />
+            <Route path="/tools" element={<Dashborad />} />
             <Route path="/tools/admission-calender" element={<AdCalender />} />
           </Routes>
         </div>

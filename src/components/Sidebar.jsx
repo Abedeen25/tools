@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../index.scss";
 import ThemeToggle from "../components/ThemeToggle";
 
 function Sidebar() {
+  const location = useLocation();
   const [calenderVisible, setCalenderVisible] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
@@ -30,13 +31,15 @@ function Sidebar() {
               viewBox="0 0 600 600"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_118_2)">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M285.513 -73.0858L307.821 -63.6167L315.791 -67L319.295 -58.7462L393.3 -27.3326L389.34 -18.0012H209.377L208 -21.2454L275.707 -49.9854L285.513 -73.0858ZM231.569 53.997L127 300.347V191H4.57764e-05V599.54L-36.5933 685.748L71.1945 731.501L126.165 602H127V600.032L299.358 193.981L531.765 741.498L639.557 695.743L367.151 53.997H231.569ZM127 600.032L126.165 602H4.57764e-05V599.54L127 300.347V600.032ZM62.9985 125.997C97.7916 125.997 125.997 97.7915 125.997 62.9984C125.997 28.2054 97.7916 0 62.9985 0C28.2054 0 4.57764e-05 28.2054 4.57764e-05 62.9984C4.57764e-05 97.7915 28.2054 125.997 62.9985 125.997Z"
-                />
-              </g>
+              <Link to="/tools">
+                <g clip-path="url(#clip0_118_2)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M285.513 -73.0858L307.821 -63.6167L315.791 -67L319.295 -58.7462L393.3 -27.3326L389.34 -18.0012H209.377L208 -21.2454L275.707 -49.9854L285.513 -73.0858ZM231.569 53.997L127 300.347V191H4.57764e-05V599.54L-36.5933 685.748L71.1945 731.501L126.165 602H127V600.032L299.358 193.981L531.765 741.498L639.557 695.743L367.151 53.997H231.569ZM127 600.032L126.165 602H4.57764e-05V599.54L127 300.347V600.032ZM62.9985 125.997C97.7916 125.997 125.997 97.7915 125.997 62.9984C125.997 28.2054 97.7916 0 62.9985 0C28.2054 0 4.57764e-05 28.2054 4.57764e-05 62.9984C4.57764e-05 97.7915 28.2054 125.997 62.9985 125.997Z"
+                  />
+                </g>
+              </Link>
               <defs>
                 <clipPath id="clip0_118_2">
                   <rect width="600" height="600" fill="white" />
@@ -56,9 +59,9 @@ function Sidebar() {
             </button>
           </span>
         </li>
-        <li className="active">
+        <li className={location.pathname === "/tools" ? "active" : ""}>
           {/* <li> */}
-          <Link to="/tools/dashboard">
+          <Link to="/tools">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -71,7 +74,11 @@ function Sidebar() {
           </Link>
         </li>
         <li
-          className="active dropdown-btn"
+          className={
+            location.pathname === "/tools/admission-calender"
+              ? "active dropdown-btn"
+              : "dropdown-btn"
+          }
           onMouseLeave={() => hideDroplist(setCalenderVisible)}
         >
           <Link to="/tools/admission-calender">
@@ -101,18 +108,24 @@ function Sidebar() {
           </Link>
           <ul className={calenderVisible ? "sub-menu show" : "sub-menu"}>
             <div>
-              <li>
+              <li
+                className={
+                  location.pathname === "/tools/admission-calender"
+                    ? "active"
+                    : ""
+                }
+              >
                 <Link to="/tools/admission-calender">Timeline</Link>
               </li>
-              <li>
-                <Link to="/tools/dashboard">Finder</Link>
+              <li className={location.pathname === "/tools" ? "active" : ""}>
+                <Link to="/tools">Finder</Link>
               </li>
             </div>
           </ul>
         </li>
-        <li className="">
+        <li className={location.pathname === "/tools" ? "active" : ""}>
           {/* <li> */}
-          <Link to="/tools/dashboard">
+          <Link to="/tools">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
