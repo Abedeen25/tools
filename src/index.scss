@@ -18,7 +18,7 @@
   --light-bleed: var(--bg-main);
   --card-color: var(--bg-main);
   --fun-color1: #ffa023;
-  --fun-color2: #c5e546;
+  --fun-color2: #b6ec38;
   --fun-color3: #8bd8f6;
   --Theme-changing-button: "./Assets/Images/Theme-Dark.svg";
   --border-radius-small: 7px;
@@ -45,9 +45,9 @@
   --accent-color-10: rgba(132, 98, 241, 0.1);
   --light-bleed: #6f63a517;
   --card-color: #1b1e2b;
-  --fun-color1: #91d1c0;
-  --fun-color2: #5b61ff;
-  --fun-color3: #9e59ff;
+  --fun-color1: #f5953b;
+  --fun-color2: #513eff;
+  --fun-color3: #6600da;
   --Theme-changing-button: "./Assets/Images/Theme-Light.svg";
 }
 
@@ -237,6 +237,7 @@ body {
 .calender-content {
   overflow-x: scroll;
   .timeline-container {
+    position: relative;
     background-color: var(--bg-main);
     margin-top: 1em;
     border-radius: 0.5em;
@@ -250,18 +251,60 @@ body {
       flex-wrap: nowrap;
       min-height: 7em;
       padding-top: 1.5em;
+      height: calc(100% - 1.5em);
       .day-mark {
-        min-width: 2em;
+        min-width: 34px;
         text-align: right;
         border-right: 1px solid var(--text-brighter-text);
         color: var(--text-brighter-text);
         overflow-x: visible;
       }
+      // each day is 35 px long
       .month-name {
         color: var(--fun-color1);
         background-color: var(--bg-glass);
         font-weight: 600;
         margin-top: -1.4em;
+      }
+    }
+    .timeline-events {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 3.2em;
+      .event-stack {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-left: 35px;
+        margin-bottom: 1em;
+        .event {
+          overflow: hidden;
+          border-radius: var(--border-radius-medium);
+          padding: 10px;
+          background-color: var(--fun-color2);
+          // background-image: linear-gradient(
+          //   to left,
+          //   var(--fun-color2),
+          //   var(--fun-color2),
+          //   var(--accent-color-60)
+          // );
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          &:hover {
+            box-shadow: 0 0 15px var(--fun-color2);
+          }
+
+          .title {
+            color: var(--text-highlight-text);
+          }
+          .end-date {
+            color: var(--text-bright-text);
+            font-size: small;
+            margin: auto 0;
+          }
+        }
       }
     }
   }
