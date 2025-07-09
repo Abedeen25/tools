@@ -243,13 +243,14 @@ body {
     border-radius: 0.5em;
     box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.07);
     overflow: auto;
+    min-height: 10em;
 
     .timeline-days {
       display: flex;
       align-items: stretch;
       flex-direction: row;
       flex-wrap: nowrap;
-      min-height: 7em;
+      // min-height: 7em;
       padding-top: 1.5em;
       height: calc(100% - 1.5em);
       .day-mark {
@@ -258,6 +259,11 @@ body {
         border-right: 1px solid var(--text-brighter-text);
         color: var(--text-brighter-text);
         overflow-x: visible;
+      }
+      .its-today {
+        background-color: var(--accent-color-20);
+        min-width: 33px;
+        border-right: 2px solid red;
       }
       // each day is 35 px long
       .month-name {
@@ -306,6 +312,61 @@ body {
           }
         }
       }
+    }
+  }
+}
+
+.modal-container {
+  color: var(--text-highlight-text);
+  background-color: var(--bg-main);
+  border-radius: var(--border-radius-medium);
+  padding: 1em;
+  max-height: 90vh;
+  overflow: scroll;
+  .univ-logo {
+    width: 100%;
+    max-height: 300px;
+    border-radius: var(--border-radius-medium);
+    object-fit: cover;
+  }
+
+  svg {
+    fill: var(--text-highlight-text);
+    width: 1em;
+    height: 1em;
+  }
+  .reqs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .req-chips {
+      background-color: var(--fun-color2);
+      border-radius: var(--border-radius-small);
+      margin-left: 0.6em;
+      margin-top: 0.1em;
+      margin-bottom: 0.3em;
+      padding: 0 0.7em;
+    }
+  }
+  p {
+    display: flexbox;
+  }
+  a {
+    background-color: var(--fun-color3);
+    color: var(--text-sigma);
+    text-decoration: none;
+    padding: 0.1em 0.7em;
+    border-radius: var(--border-radius-small);
+    margin-left: 0.7em;
+  }
+  .bottm-mod {
+    display: flex;
+    .count-down {
+      display: inline-block;
+      background-color: var(--button-second-border);
+      padding: 0.1em 0.7em;
+      border-radius: var(--border-radius-small);
+      margin-left: auto;
     }
   }
 }

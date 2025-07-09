@@ -1,11 +1,32 @@
 import React, { useState, useEffect } from "react";
 import events from "../../data/timeline_events.json";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "90%",
+  maxWidth: 800,
+  bgcolor: "#ffffff000",
+  outline: "none",
+};
 
 const AdCalender = () => {
   const [noOfDays, setNoOfDays] = useState([]);
   const [EventStacks, setEventStacks] = useState([]);
   const [startDate, setstartDate] = useState();
   const [endDate, setendDate] = useState();
+
+  // modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [selectedEvent, setSelectedEvent] = useState(events[0]);
+
+  // Utility variables
   const monthNames = [
     "January",
     "February",
@@ -21,6 +42,20 @@ const AdCalender = () => {
     "December",
   ];
   const dayval = 1000 * 60 * 60 * 24;
+
+  const countDown = (endsAt) => {
+    const countDownDate = endsAt.getTime();
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    return (
+      <div className="count-down">{`Ending in: ${days}d ${hours}h ${minutes}m`}</div>
+    );
+  };
 
   const showStacks = (list) => {
     let eventNumber = list.posts.length;
@@ -78,9 +113,17 @@ const AdCalender = () => {
                 color: "black",
                 width: `${span.days * 35 - 20}px`,
               }}
+              onClick={() => {
+                handleOpen();
+                setSelectedEvent(span.post);
+              }}
             >
-              <div className="title">{span.post.description}</div>
-              <div className="end-date">{span.post["end-date"]}</div>
+              <div className="title">{span.post.title}</div>
+              <div className="end-date">
+                {Math.floor(
+                  (new Date(span.post["end-date"]) - new Date()) / dayval
+                ) + " days remaining"}
+              </div>
             </div>
           )
         )}
@@ -157,6 +200,52 @@ const AdCalender = () => {
     <div className="calender-content">
       <h1>Timeline</h1>
       <div className="form">form</div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="modal-container">
+            <img
+              src={selectedEvent.logo}
+              alt="Univ Logo"
+              className="univ-logo"
+            />
+            <h2>{selectedEvent.title}</h2>
+            <h4>{selectedEvent.description}</h4>
+            <p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z" />
+              </svg>
+              {" " +
+                new Date(selectedEvent["start-date"]).toDateString() +
+                " - " +
+                new Date(selectedEvent["end-date"]).toDateString()}
+            </p>
+            <b>Country:</b>
+            {" " + selectedEvent.country}
+            <p className="reqs">
+              <b># Requirements:</b>
+              {selectedEvent.Requirements.map((i, k) => {
+                return <div className="req-chips">{i}</div>;
+              })}
+            </p>
+            <div className="bottm-mod">
+              <b>Visit: </b>
+              <a
+                href={selectedEvent.postlink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See more
+              </a>
+              {countDown(new Date(selectedEvent["end-date"]))}
+            </div>
+          </div>
+        </Box>
+      </Modal>
       <div
         className="timeline-container"
         style={{ height: `${EventStacks.length * 3.6 + 2.6}em` }}
@@ -164,11 +253,25 @@ const AdCalender = () => {
         <div className="timeline-days">
           {noOfDays.map((i, ind) =>
             i.getDate() !== 1 ? (
-              <div key={ind} className="day-mark">
+              <div
+                key={ind}
+                className={
+                  i.toDateString() === new Date().toDateString()
+                    ? "day-mark its-today"
+                    : "day-mark"
+                }
+              >
                 {i.getDate()}
               </div>
             ) : (
-              <div key={ind} className="day-mark month-name">
+              <div
+                key={ind}
+                className={
+                  i.toDateString() === new Date().toDateString()
+                    ? "day-mark month-name its-today"
+                    : "day-mark month-name"
+                }
+              >
                 {monthNames[i.getMonth()]} <br /> {i.getDate()}
               </div>
             )
