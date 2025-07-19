@@ -234,13 +234,13 @@ const AdCalender = () => {
             </p>
             <div className="bottm-mod">
               <b>Visit: </b>
-              <a
-                href={selectedEvent.postlink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                See more
-              </a>
+              {selectedEvent["relatedLinks"].map((i, k) => {
+                return (
+                  <a href={i["link"]} target="_blank" rel="noopener noreferrer">
+                    {i["text"]}
+                  </a>
+                );
+              })}
               {countDown(new Date(selectedEvent["end-date"]))}
             </div>
           </div>

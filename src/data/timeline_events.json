@@ -15,7 +15,12 @@
       "CV",
       "Research outputs (if applicable)"
     ],
-    "postlink": "https://www.cdu.edu.au/research-and-innovation/higher-degree-research/scholarships/competitive-round-scholarship",
+    "relatedLinks": [
+      {
+        "text": "Website",
+        "link": "https://www.cdu.edu.au/research-and-innovation/higher-degree-research/scholarships/competitive-round-scholarship"
+      }
+    ],
     "logo": "https://raw.githubusercontent.com/Abedeen25/Assets/refs/heads/main/Images/Univ/Charles-Darwin-University.jpg"
   },
   {
@@ -31,7 +36,40 @@
       "Name two reference persons (professors)",
       "Reference letters from Profs"
     ],
-    "postlink": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+    "relatedLinks": [
+      {
+        "text": "Website",
+        "link": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html"
+      }
+    ],
     "logo": "https://raw.githubusercontent.com/Abedeen25/Assets/refs/heads/main/Images/Univ/eth-zurich.jpg"
+  },
+  {
+    "id": 5,
+    "title": "University of Zurich",
+    "description": "Masters application with visa requirements",
+    "start-date": "2025-07-01",
+    "end-date": "2025-07-31",
+    "country": "Switzerland",
+    "region": "EU",
+    "Requirements": [
+      "minimum 2 academic referee reports",
+      "English proficiency results",
+      "academic documents",
+      "supervisor confirmation email",
+      "CV",
+      "Research outputs (if applicable)"
+    ],
+    "relatedLinks": [
+      {
+        "text": "Program page",
+        "link": "https://www.uzh.ch/en/studies/programs/master/people_oriented_computing.html"
+      },
+      {
+        "text": "Deadline page",
+        "link": "https://www.uzh.ch/en/studies/application/deadlines.html"
+      }
+    ],
+    "logo": "https://raw.githubusercontent.com/Abedeen25/Assets/refs/heads/main/Images/Univ/university-of-zurich.png"
   }
 ]
